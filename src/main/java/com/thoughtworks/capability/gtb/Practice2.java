@@ -11,6 +11,8 @@ import java.time.LocalDate;
 public class Practice2 {
 
   public static LocalDate getNextWorkDate(LocalDate date) {
+    
+
     return null;
   }
 }

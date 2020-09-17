@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,7 +17,10 @@ import java.time.format.DateTimeFormatter;
  * @create 2020-05-19_18:43
  */
 public class MeetingSystemV3 {
-
+  private static Practice1 practice1;
+   public MeetingSystemV3(Practice1 practice1){
+     this.practice1 = practice1;
+   }
   public static void main(String[] args) {
     String timeStr = "2020-04-01 14:30:00";
 
