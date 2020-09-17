@@ -1,9 +1,6 @@
 package com.thoughtworks.capability.gtb;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,25 +11,18 @@ import java.util.Date;
  * @create 2020-05-15_17:20
  */
 public class Practice2 {
+    private static int NEXT_WORKDAY_NEAR_FRIDAY=3;
+    private static int NEXT_WORKDAY_NEAR_SATURDAY=2;
+    private static int NEXT_WORKDAY_DEFAULT=1;
 
   public static LocalDate getNextWorkDate(LocalDate date) {
-      LocalDate nextWorkday = date;
-      ZoneId zone = ZoneId.systemDefault();
-      Instant instant = date.atStartOfDay().atZone(zone).toInstant();
-      java.util.Date upDate = Date.from(instant);
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(upDate);
-      int w = cal.get(Calendar.DAY_OF_WEEK)-1;
-      if(w==5)
-      {
-          nextWorkday = date.plusDays(3);
-      }else
-      if(w==6){
-          nextWorkday = date.plusDays(2);
+      switch (date.getDayOfWeek()) {
+          case FRIDAY:
+              return date.plusDays(NEXT_WORKDAY_NEAR_FRIDAY);
+          case SATURDAY:
+              return date.plusDays(NEXT_WORKDAY_NEAR_SATURDAY);
+          default:
+              return date.plusDays(NEXT_WORKDAY_DEFAULT);
       }
-      else{
-          nextWorkday = date.plusDays(1);
-      }
-    return nextWorkday;
   }
 }

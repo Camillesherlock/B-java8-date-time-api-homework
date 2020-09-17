@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.Period;
 
 /**
@@ -12,16 +13,14 @@ import java.time.Period;
  */
 
 public class Practice1 {
-
+ private static Month MONTH_OF_LABORDAY = Month.MAY;
+ private static int DAY_OF_LABORDAY = 1;
+ private static int GAP_YEAR = 1;
   public static long getDaysBetweenNextLaborDay(LocalDate date) {
-    int year = date.getYear();
-    Period timeDifference;
-    LocalDate nextLaborDay = LocalDate.of(year,5,1);
+    LocalDate nextLaborDay = LocalDate.of(date.getYear(),MONTH_OF_LABORDAY,DAY_OF_LABORDAY);
     if(date.isAfter(nextLaborDay)){
-      nextLaborDay = nextLaborDay.plusYears(1);
+      nextLaborDay = nextLaborDay.plusYears(GAP_YEAR);
     }
-    timeDifference = Period.between(date,nextLaborDay);
-    return timeDifference.getDays();
-  }
+    return (nextLaborDay.toEpochDay()-date.toEpochDay());
 
-}
+}}
